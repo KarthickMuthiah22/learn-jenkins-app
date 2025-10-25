@@ -30,6 +30,12 @@ pipeline {
             steps {
                 sh '''
                     npm run test
+                    if [ -f build/index.html ]; then
+                      echo "build/index.html exists"
+                    else
+                      echo "build/index.html NOT FOUND" >&2
+                      exit 1
+                    fi
                     ls -la
                 ''' 
             }
